@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apr7-objectdetection-1-database-config
+data:
+  VECTORDB_HOST: "apr7-objectdetection-1-database"
+  VECTORDB_PORT: ""

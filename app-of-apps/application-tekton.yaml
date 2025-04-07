@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apr7-objectdetection-1-app-tekton
+  namespace: ai-rhdh
+  finalizers: ["resources-finalizer.argocd.argoproj.io"]
+spec:
+  project: default
+  source:
+    path: ./components/apr7-objectdetection-1/overlays/tekton
+    repoURL: https://github.com/jdubrick-ai/apr7-objectdetection-1-gitops.git
+    targetRevision: main
+  destination:
+    namespace: rhdh-app
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: ai-rhdh
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true

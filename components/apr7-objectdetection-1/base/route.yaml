@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app.kubernetes.io/instance: apr7-objectdetection-1
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: apr7-objectdetection-1
+  name: apr7-objectdetection-1
+spec:
+  port:
+    targetPort: 8501
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: apr7-objectdetection-1
+    weight: 100
+  wildcardPolicy: None
